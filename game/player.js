@@ -83,3 +83,26 @@ Player.prototype.move = function () {
     light1.position.y = this.position.y;
     light1.position.z = this.graphic.position.z + 500;
 };
+
+Player.prototype.moveAuto = function () {
+    var moveAuto = new THREE.Vector3(
+        this.speed * Math.cos(this.direction) + this.position.x,
+        this.speed * Math.sin(this.direction) + this.position.y,
+        this.graphic.position.z,
+    );
+
+    if (this.speed > 0) {
+        this.speed = this.speed - 2;
+    }
+    else if (this.speed < 0) {
+        this.speed = this.speed + 2;
+    }
+    else {
+        this.speed = 2;
+    }
+    
+    this.position = moveAuto;
+    this.graphic.position.x = this.position.x;
+    this.graphic.position.y = this.position.y;
+};
+
